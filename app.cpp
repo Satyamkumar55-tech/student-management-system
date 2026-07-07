@@ -15,8 +15,20 @@ void addStudent(vector<Student>& students, Student newStudent){
     students.push_back(newStudent);
 }
 
+void displayStudents(const vector<Student>& students){
+    int n = students.size();
+    if(n == 0){
+        cout<<"No students found."<<endl;
+    }
+
+    for(int i =0; i<n; i++){
+        cout<<"ID:"<<students[i].s_id<<" "<<"| "<<"NAME:"<<students[i].name<<" "<<"| "<<"DEPARTMENT:"<<students[i].department<<" "<<"| "<<"CGPI: "<<students[i].cgpa<<" "<<"| "<<"ADDRESS:"<<students[i].address<<endl;
+    }
+}
+
 int main(){
     vector<Student> students;
+    displayStudents(students);
     int s_id;
     cout<<"Enter your student ID:";
     cin>>s_id;
@@ -43,7 +55,9 @@ int main(){
     newStudent.address = address;
 
     addStudent(students,newStudent);
-    cout<<"Your data is been added "<<students[0].s_id <<" "<<students[0].name<<endl;
+    cout<<"Your data is been added "<<students[0].s_id << " " <<students[0].name<<endl;
+
+    displayStudents(students);
 }
     
 
