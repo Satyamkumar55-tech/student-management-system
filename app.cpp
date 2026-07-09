@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<limits>
 using namespace std;
     struct Student
     {
@@ -24,6 +25,16 @@ void displayStudents(const vector<Student>& students){
     for(int i =0; i<n; i++){
         cout<<"ID:"<<students[i].s_id<<" "<<"| "<<"NAME:"<<students[i].name<<" "<<"| "<<"DEPARTMENT:"<<students[i].department<<" "<<"| "<<"CGPI: "<<students[i].cgpa<<" "<<"| "<<"ADDRESS:"<<students[i].address<<endl;
     }
+}
+
+int searchStudent(const vector<Student>& students, int search_id){
+    int n = students.size();
+    for(int i=0; i<n; i++){
+        if(search_id==students[i].s_id){
+            return i;
+        }
+    }
+    return -1;
 }
 
 int main(){
@@ -58,6 +69,20 @@ int main(){
     cout<<"Your data is been added "<<students[0].s_id << " " <<students[0].name<<endl;
 
     displayStudents(students);
+    int search_id;
+    cout<<"Enter the Search ID of the student you want to search for:";
+    while(!(cin>>search_id)){
+        cout<<"Invaild input! enter a valid interger:";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    }
+    int result = searchStudent(students, search_id);
+    if(result == -1){
+        cout<<"No student found"<<endl;
+    }
+    else{
+        cout<<"ID:"<<students[result].s_id<<" "<<"| "<<"NAME:"<<students[result].name<<" "<<"| "<<"DEPARTMENT:"<<students[result].department<<" "<<"| "<<"CGPI: "<<students[result].cgpa<<" "<<"| "<<"ADDRESS:"<<students[result].address<<endl;
+    }
 }
     
 
