@@ -37,13 +37,27 @@ int searchStudent(const vector<Student>& students, int search_id){
     return -1;
 }
 
+void showMenu(){
+    cout<<"1. Add Student"<<endl<<"2. Display Students"<<endl<<"3.Search Student"<<endl<<"4.Exit"<<endl;
+}
+
 int main(){
     vector<Student> students;
-    displayStudents(students);
+    int choice;
+    do{
+    showMenu();
+    cout<<"Enter your choice:";
+    cin>>choice;
+    switch(choice){
+    case 1:{
     int s_id;
     cout<<"Enter your student ID:";
-    cin>>s_id;
-    cin.ignore();
+        while(!(cin>>s_id)){
+        cout<<"Invaild input! enter a valid interger:"<<endl;
+    cin.clear();
+     cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    }
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
     string name;
     cout<<"Enter your name:";
     getline(cin,name);
@@ -52,8 +66,11 @@ int main(){
     getline(cin,department);
     double cgpa;
     cout<<"Enter you current cgpa:";
-    cin>>cgpa;
-    cin.ignore();
+   while(!(cin>>cgpa)){
+        cout<<"Invaild input! enter a valid interger:"<<endl;
+    }
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
     string address;
     cout<<"Enter your address:";
     getline(cin,address);
@@ -66,9 +83,15 @@ int main(){
     newStudent.address = address;
 
     addStudent(students,newStudent);
-    cout<<"Your data is been added "<<students[0].s_id << " " <<students[0].name<<endl;
-
+    cout<<"Your data is been added "<<students[students.size()-1].s_id << " " <<students[students.size()-1].name<<endl;
+    break;
+    }
+    case 2:{
     displayStudents(students);
+    
+    break;
+    }
+    case 3:{
     int search_id;
     cout<<"Enter the Search ID of the student you want to search for:";
     while(!(cin>>search_id)){
@@ -83,6 +106,15 @@ int main(){
     else{
         cout<<"ID:"<<students[result].s_id<<" "<<"| "<<"NAME:"<<students[result].name<<" "<<"| "<<"DEPARTMENT:"<<students[result].department<<" "<<"| "<<"CGPI: "<<students[result].cgpa<<" "<<"| "<<"ADDRESS:"<<students[result].address<<endl;
     }
+    break;
 }
+    case 4:
+        cout<<"EXITING"<<endl;
+        break;
+}
+}
+while(choice != 4);
+}
+
     
 
