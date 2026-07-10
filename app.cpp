@@ -37,8 +37,21 @@ int searchStudent(const vector<Student>& students, int search_id){
     return -1;
 }
 
+void deleteStudent(vector<Student>& students, int delete_id){
+    int n = students.size();
+    for(int i =0; i<n; i++){
+        if(delete_id == students[i].s_id){
+            auto it = students.begin() + i;
+            students.erase(it);
+            cout<<"Student delted of ID:"<<delete_id<<endl;
+            return;
+        }
+    }
+    cout<<"Student not found for the entered ID"<<endl;
+}
+
 void showMenu(){
-    cout<<"1. Add Student"<<endl<<"2. Display Students"<<endl<<"3.Search Student"<<endl<<"4.Exit"<<endl;
+    cout<<"1. Add Student"<<endl<<"2. Display Students"<<endl<<"3.Search Student"<<endl<<"4.Delete Student"<<endl<<"5.Exit"<<endl;
 }
 
 int main(){
@@ -108,12 +121,23 @@ int main(){
     }
     break;
 }
-    case 4:
+case 4:{
+    int delete_id;
+    cout<<"Enter the ID of the student you want to delete:";
+    while(!(cin>>delete_id)){
+        cout<<"Invalid input! enter a valid integer:";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    }
+    deleteStudent(students, delete_id);
+    break;
+}
+    case 5:
         cout<<"EXITING"<<endl;
         break;
 }
 }
-while(choice != 4);
+while(choice != 5);
 }
 
     
