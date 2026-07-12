@@ -2,6 +2,8 @@
 #include<string>
 #include<vector>
 #include<limits>
+#include<fstream>
+#include<sstream>
 using namespace std;
     struct Student
     {
@@ -52,6 +54,38 @@ void deleteStudent(vector<Student>& students, int delete_id){
 
 void showMenu(){
     cout<<"1. Add Student"<<endl<<"2. Display Students"<<endl<<"3.Search Student"<<endl<<"4.Delete Student"<<endl<<"5.Exit"<<endl;
+}
+
+void saveToFile(const vector<Student>& students){
+   ofstream outFile("students.csv");
+   int n = students.size();
+   for(int i=0; i<n; i++){
+    outFile<<students[i].s_id<<","<<students[i].name<<","<<students[i].department<<","<<students[i].cgpa<<","<<students[i].address<<endl;
+   }
+}
+
+void loadFromFile(vector<Student>& students){
+    ifstream inFile("students.csv");
+    string line;
+    while(getline(inFile,line)){
+        stringstream ss(line);
+        string id, name, department, cgpa, address;
+        getline(ss, id, ',');
+        getline(ss, name, ',');
+        getline(ss, department, ',');
+        getline(ss, cgpa, ',');
+        getline(ss, address, ',');
+    int S_ID = stoi(id);
+    double CGPA = stod(cgpa);
+
+    Student newStudent;
+    newStudent.s_id = S_ID;
+    newStudent.name = name;
+    newStudent.department = department;
+    newStudent.cgpa = CGPA;
+    newStudent.address = address;
+    students.push_back(newStudent);
+    }
 }
 
 int main(){
