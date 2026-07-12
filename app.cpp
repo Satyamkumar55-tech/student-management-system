@@ -90,6 +90,7 @@ void loadFromFile(vector<Student>& students){
 
 int main(){
     vector<Student> students;
+    loadFromFile(students);
     int choice;
     do{
     showMenu();
@@ -130,6 +131,7 @@ int main(){
     newStudent.address = address;
 
     addStudent(students,newStudent);
+    saveToFile(students);
     cout<<"Your data is been added "<<students[students.size()-1].s_id << " " <<students[students.size()-1].name<<endl;
     break;
     }
@@ -164,6 +166,7 @@ case 4:{
         cin.ignore(numeric_limits<streamsize>::max(),'\n');
     }
     deleteStudent(students, delete_id);
+    saveToFile(students);
     break;
 }
     case 5:
