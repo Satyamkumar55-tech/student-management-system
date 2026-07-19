@@ -66,13 +66,13 @@ File Update
 Clone the repository:
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Satyamkumar55-tech/student-management-system.git
 ```
 
 Navigate to the project folder:
 
 ```bash
-cd <project-folder>
+cd student_management
 ```
 
 Compile the program:
