@@ -4,6 +4,7 @@
 #include<limits>
 #include<fstream>
 #include<sstream>
+#include<algorithm>
 using namespace std;
     struct Student
     {
@@ -23,6 +24,7 @@ void displayStudents(const vector<Student>& students){
     if(n == 0){
         cout<<"No students found."<<endl;
     }
+
 
     for(int i =0; i<n; i++){
         cout<<"ID:"<<students[i].s_id<<" "<<"| "<<"NAME:"<<students[i].name<<" "<<"| "<<"DEPARTMENT:"<<students[i].department<<" "<<"| "<<"CGPI: "<<students[i].cgpa<<" "<<"| "<<"ADDRESS:"<<students[i].address<<endl;
